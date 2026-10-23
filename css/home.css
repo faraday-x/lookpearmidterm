@@ -1,0 +1,119 @@
+.home-page .site-nav,
+body.is-home .site-nav {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.home-wrap {
+  padding-top: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-scrapbook-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-scrapbook-bg img {
+  position: absolute;
+  top: 3%;
+  bottom: 0;
+  left: 26%;
+  width: 75%;
+  object-fit: cover;
+  object-position: center;
+  max-width: none;
+}
+
+.hero-grad {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 10, 0.70) 0%,
+    rgba(10, 10, 10, 0.40) 40%,
+    rgba(0, 0, 0, 0.05) 70%,
+    transparent 100%
+  );
+}
+
+.hero-stripe {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--red);
+  z-index: 3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: calc(56px + 3rem) 3rem 4rem;
+  max-width: 560px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 11vw, 9rem);
+  line-height: 0.88;
+  color: var(--white);
+  margin-bottom: 1.25rem;
+}
+.hero-title .t-red { color: var(--red); }
+
+.hero-club {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 2rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-story);
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--white);
+  margin-bottom: 0.9rem;
+}
+
+.hero-desc {
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 2.5rem;
+  max-width: 380px;
+}
+
+.home-bottom-bar {
+  height: 52px;
+  background: rgba(0,0,0,0.55);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 3rem;
+  gap: 1.5rem;
+}
+.bottom-bar-num  { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; color: #555; white-space: nowrap; }
+.bottom-bar-line { flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.bottom-bar-text { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #444; white-space: nowrap; }
+
+@media (max-width: 768px) {
+  .hero-content { padding: calc(56px + 2rem) 1.5rem 3rem; }
+  .home-bottom-bar { padding: 0 1.5rem; }
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Profiles — The Red Legends</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/collection.css" />
+</head>
+<body>
+
+<nav class="site-nav"></nav>
+
+<div class="collection-page-wrap">
+
+  <section class="collection-hero">
+    <div class="collection-hero-inner">
+      <div class="ch-label">The Red Collection · Profiles</div>
+      <h1 class="ch-title">PLAYER PROFILES</h1>
+    </div>
+  </section>
+
+  <main class="players-list-wrap" id="players-list">
+  </main>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lightbox-close">✕</button>
+  <img class="lb-img" id="lightbox-img" src="" alt="" />
+</div>
+
+<footer class="site-footer">
+  <div class="footer-left">
+    <img class="footer-logo" src="image/Element/Logo.png" alt="LFC" />
+    <span class="footer-brand">THE RED LEGENDS</span>
+  </div>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="story.html">Legends</a>
+    <a href="collection.html">Collection</a>
+    <a href="about.html">About</a>
+  </nav>
+  <span class="footer-copy">Midterm Project · Pear · Liverpool FC</span>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  const listEl = document.getElementById('players-list');
+  const jumpEl = document.getElementById('jump-nav');
+
+  const pastPlayers   = getPastPlayers();
+  const modernPlayers = getModernPlayers();
+
+  function makePlayerRow(p) {
+    const miniGalleryHtml = p.images.slice(0, 4).map(src => `
+      <div class="mini-thumb" data-lightbox="${src}" title="คลิกดูภาพขยาย">
+        <img src="${src}" alt="${p.name}" loading="lazy" />
+      </div>
+    `).join('');
+
+    const trophiesHtml = p.trophies.length
+      ? p.trophies.map(t => `<span class="pr-trophy-item">🏆 ${t}</span>`).join('')
+      : `<span class="pr-trophy-item" style="color:#666;">ความทรงจำอันทรงคุณค่าแห่งแอนฟิลด์</span>`;
+
+    return `
+      <article class="player-row" id="player-${p.id}">
+        
+        <div class="player-row-media">
+          <div class="player-main-card" data-lightbox="${p.mainImage}" title="คลิกดูภาพขยายเต็มจอ">
+            <img src="${p.mainImage}" alt="${p.name}" loading="lazy" />
+            <div class="player-number-tag">#${p.number}</div>
+            <div class="player-zoom-hint">🔍 คลิกเพื่อซูม</div>
+          </div>
+          <div class="player-mini-gallery">
+            ${miniGalleryHtml}
+          </div>
+        </div>
+
+        <div class="player-row-content">
+          <div>
+            <div class="pr-header">
+              <h2 class="pr-name">${p.name}</h2>
+              <span class="pr-nickname">"${p.nickname}"</span>
+            </div>
+
+            <div class="pr-spec-grid">
+              <div class="pr-spec-box">
+                <span class="pr-spec-lbl">หมายเลขเสื้อ</span>
+                <span class="pr-spec-val" style="color:var(--gold);">#${p.number}</span>
+              </div>
+              <div class="pr-spec-box">
+                <span class="pr-spec-lbl">ตำแหน่ง</span>
+                <span class="pr-spec-val">${p.position}</span>
+              </div>
+              <div class="pr-spec-box">
+                <span class="pr-spec-lbl">ช่วงเวลาที่ลิเวอร์พูล</span>
+                <span class="pr-spec-val">${p.years}</span>
+              </div>
+              <div class="pr-spec-box">
+                <span class="pr-spec-lbl">สัญชาติ</span>
+                <span class="pr-spec-val">${p.nationality}</span>
+              </div>
+            </div>
+
+            <div class="pr-highlight-card">
+              <div class="pr-highlight-badge">⭐ KEY HIGHLIGHT</div>
+              <div class="pr-highlight-text">${p.highlight}</div>
+            </div>
+
+            <div class="pr-story-block">
+              <div class="pr-story-lbl">เรื่องราวและความเป็นมา</div>
+              <p class="pr-story-text">${p.bio}</p>
+            </div>
+          </div>
+
+          <div class="pr-footer-row">
+            <div class="pr-stats-group">
+              <span class="pr-stat-pill red">⚽ ${p.goals} ประตู</span>
+              <span class="pr-stat-pill">🏟️ ${p.appearances} นัด</span>
+              <span class="pr-stat-pill">🏆 ${p.trophies.length} ประเภทแชมป์</span>
+            </div>
+            <div class="pr-trophies-list">
+              ${trophiesHtml}
+            </div>
+          </div>
+        </div>
+
+      </article>
+    `;
+  }
+
+  listEl.innerHTML = `
+    <div class="list-era-divider">
+      <span class="list-era-badge">ยุคคลาสสิก</span>
+      <h2 class="list-era-title">LEGENDS OF THE PAST</h2>
+      <span class="list-era-count">5 PLAYERS</span>
+    </div>
+    ${pastPlayers.map(makePlayerRow).join('')}
+
+    <div class="list-era-divider" style="margin-top:4rem;">
+      <span class="list-era-badge gold">ยุคปัจจุบัน</span>
+      <h2 class="list-era-title">MODERN ERA</h2>
+      <span class="list-era-count">5 PLAYERS</span>
+    </div>
+    ${modernPlayers.map(makePlayerRow).join('')}
+  `;
+
+  function scrollToPlayerFromUrl() {
+    const hash = window.location.hash;
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetId = hash ? hash.replace('#', '') : (urlParams.get('id') ? `player-${urlParams.get('id')}` : null);
+
+    if (targetId) {
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        setTimeout(() => {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetEl.classList.add('highlighted');
+          document.querySelectorAll('.jump-pill').forEach(pill => {
+            pill.classList.toggle('active', pill.dataset.target === targetId);
+          });
+        }, 150);
+      }
+    }
+  }
+
+  document.querySelectorAll('.jump-pill').forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = pill.dataset.target;
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetEl.classList.add('highlighted');
+        setTimeout(() => targetEl.classList.remove('highlighted'), 2500);
+        document.querySelectorAll('.jump-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        history.replaceState(null, null, `#${targetId}`);
+      }
+    });
+  });
+
+  const lb    = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('[data-lightbox]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lbImg.src = el.dataset.lightbox;
+      lb.classList.add('open');
+    });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('open'));
+  lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  window.addEventListener('load', scrollToPlayerFromUrl);
+</script>
+</body>
+</html>

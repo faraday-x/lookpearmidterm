@@ -1,0 +1,279 @@
+body.story-page {
+  background-image: url('../image/StoryPage_Background.png') !important;
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.legends-wrap {
+  padding-top: 56px;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+.legends-page-hero {
+  padding: 3.5rem 3.5rem 1.5rem;
+  position: relative;
+  border-bottom: none;
+}
+
+.legends-page-hero-inner {
+  background: rgba(14, 14, 18, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-left: 5px solid var(--red);
+  padding: 1.75rem 2.5rem;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.lph-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.4rem;
+}
+
+.lph-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6.5vw, 5rem);
+  line-height: 0.95;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.lph-sub {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.era-section {
+  padding: 2rem 3.5rem 3.5rem;
+  position: relative;
+}
+
+.era-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: rgba(14, 14, 18, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 1rem 1.75rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+}
+
+.era-badge {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 3px;
+  margin-bottom: 0.45rem;
+  box-shadow: 0 2px 8px rgba(200,16,46,0.4);
+}
+
+.era-badge.gold {
+  background: var(--gold);
+  color: #111;
+  box-shadow: 0 2px 8px rgba(212,175,55,0.4);
+}
+
+.era-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+
+.era-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.06);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+}
+
+.player-card {
+  position: relative;
+  aspect-ratio: 3 / 4.1;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+  background: #151518;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.65);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.player-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--red);
+  box-shadow: 0 18px 40px rgba(200,16,46,0.45), 0 0 15px rgba(200,16,46,0.25);
+}
+
+.player-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+.player-card:hover .player-card-img {
+  transform: scale(1.06);
+}
+
+.player-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10,10,12,0.98) 0%,
+    rgba(10,10,12,0.75) 30%,
+    rgba(10,10,12,0.20) 60%,
+    transparent 100%
+  );
+  transition: background 0.3s;
+}
+
+.player-card:hover .player-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(180,12,36,0.95) 0%,
+    rgba(180,12,36,0.60) 35%,
+    rgba(10,10,12,0.15) 70%,
+    transparent 100%
+  );
+}
+
+.player-card-num-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  background: rgba(10,10,12,0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  z-index: 2;
+  transition: all 0.3s;
+}
+
+.player-card:hover .player-card-num-badge {
+  background: var(--red);
+  border-color: var(--white);
+}
+
+.player-card-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.15rem 1rem;
+  z-index: 2;
+}
+
+.player-card-meta {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+
+.player-card-name {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1.05;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.player-card-stat {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.05em;
+  margin-top: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.player-card-cta {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -20%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--white);
+  color: var(--red);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.3rem;
+  border-radius: 30px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  z-index: 3;
+}
+
+.player-card:hover .player-card-cta {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1200px) {
+  .players-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .era-section { padding: 2rem 2rem 3rem; }
+  .legends-page-hero { padding: 3rem 2rem 1rem; }
+}
+
+@media (max-width: 768px) {
+  .players-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .era-section { padding: 1.75rem 1.25rem 2.5rem; }
+  .legends-page-hero { padding: 2.5rem 1.25rem 1rem; }
+  .player-card-name { font-size: 1.3rem; }
+}
+
+@media (max-width: 480px) {
+  .players-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+}
